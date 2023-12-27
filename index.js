@@ -66,34 +66,34 @@ app.post("/register", (req, res) => {
       const accountSid = "ACd3cff8a55a41b3e7705e8fa3221dc4c7";
       const authToken = "b0ff845e88a77c3e815fce98ff82583e";
 
-      // const client = twilio(accountSid, authToken);
-      // const messageBody = `Hi ${name}, Thank you for visiting our site to learn more about our courses. We appreciate your interest, and we'll keep you updated with the latest information on our courses and offerings! -TNASDC`;
+      const client = twilio(accountSid, authToken);
+      const messageBody = `Hi ${name}, Thank you for visiting our site to learn more about our courses. We appreciate your interest, and we'll keep you updated with the latest information on our courses and offerings! -TNASDC`;
 
-      // client.messages
-      //   .create({
-      //     body: messageBody,
-      //     from: process.env.fromPhoneNumber,
-      //     to: toPhoneNumber,
-      //   })
-      //   .then((message) => {
-      //     console.log(`SMS sent. Message SID: ${message.sid}`);
-      //     res.status(200).json({
-      //       status_code: 200,
-      //       message: "Success",
-      //     });
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     console.error(`Error sending SMS: ${error.message}`);
-      //     res.status(500).json({
-      //       status_code: 500,
-      //       message: "Error sending SMS",
-      //     });
-      //   });
-      res.status(200).json({
-        status_code: 200,
-        message: "Success",
-      });
+      client.messages
+        .create({
+          body: messageBody,
+          from: process.env.fromPhoneNumber,
+          to: toPhoneNumber,
+        })
+        .then((message) => {
+          console.log(`SMS sent. Message SID: ${message.sid}`);
+          res.status(200).json({
+            status_code: 200,
+            message: "Success",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          console.error(`Error sending SMS: ${error.message}`);
+          res.status(500).json({
+            status_code: 500,
+            message: "Error sending SMS",
+          });
+        });
+      // res.status(200).json({
+      //   status_code: 200,
+      //   message: "Success",
+      // });
     }
   });
 });
