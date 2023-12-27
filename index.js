@@ -63,6 +63,7 @@ app.post("/register", (req, res) => {
         message: "failure",
       });
     } else {
+      console.log('Heelooev');
       const messageBody = `Hi ${name}, Thank you for visiting our site to learn more about our courses. We appreciate your interest, and we'll keep you updated with the latest information on our courses and offerings! -TNASDC`;
 
       const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
@@ -76,6 +77,8 @@ app.post("/register", (req, res) => {
         flash: 0,
         numbers: toPhoneNumber,
       };
+      console.log(requestBody,'Requst Body');
+
       axios
         .post(apiUrl, requestBody, { headers })
         .then((response) => {
